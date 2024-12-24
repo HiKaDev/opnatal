@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem de Natal Criativa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&display=swap');
+
+        :root {
+            --christmas-red: #c41e3a;
+            --christmas-green: #165b33;
+            --gold: #ffd700;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #1a472a, #0d2818);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .christmas-tree {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 300px solid var(--christmas-green);
+            filter: drop-shadow(0 0 20px rgba(22, 91, 51, 0.5));
+            z-index: 1;
+        }
+
+        .lights-wrapper {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .light {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: twinkle 1.5s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { transform: scale(1); box-shadow: 0 0 10px currentColor; }
+            100% { transform: scale(1.3); box-shadow: 0 0 20px currentColor, 0 0 40px currentColor; }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--christmas-red);
+            z-index: 2;
+            transform-style: preserve-3d;
+            animation: cardFloat 8s ease-in-out infinite;
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
+            25% { transform: translateY(-20px) rotateX(5deg) rotateY(5deg); }
+            50% { transform: translateY(0) rotateX(-5deg) rotateY(-5deg); }
+            75% { transform: translateY(20px) rotateX(5deg) rotateY(-5deg); }
+        }
+
+        h1 {
+            font-family: 'Mountains of Christmas', cursive;
+            color: var(--christmas-red);
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+                         0 0 20px var(--christmas-red);
+            animation: textGlow 2s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px var(--christmas-red); }
+            100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 40px var(--christmas-red), 0 0 80px var(--gold); }
+        }
+
+        .message {
+            color: white;
+            font-size: 2rem;
+            margin: 2rem 0;
+            line-height: 1.5;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: messageFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes messageFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .signature {
+            color: var(--gold);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+                         0 0 20px var(--gold);
+            animation: signatureGlow 3s infinite alternate;
+        }
+
+        @keyframes signatureGlow {
+            0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px var(--gold); }
+            100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 40px var(--gold), 0 0 80px var(--christmas-red); }
+        }
+
+        .snowfall {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .snowflake {
+            position: absolute;
+            font-size: 20px;
+            animation: snowfall linear infinite;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            transform-origin: center;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .decorations {
+            position: absolute;
+            top: -30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            z-index: 4;
+        }
+
+        .decoration {
+            font-size: 40px;
+            animation: decorationBounce 3s infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+
+        @keyframes decorationBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .gift-container {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            z-index: 4;
+        }
+
+        .gift {
+            font-size: 40px;
+            animation: giftWiggle 2s infinite;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gift:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes giftWiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .message {
+                font-size: 1.5rem;
+            }
+            
+            .signature {
+                font-size: 2rem;
+            }
+
+            .christmas-tree {
+                border-left: 100px solid transparent;
+                border-right: 100px solid transparent;
+                border-bottom: 200px solid var(--christmas-green);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="christmas-tree"></div>
+    <div class="lights-wrapper" id="lights"></div>
+    <div class="snowfall" id="snowfall"></div>
+    <div class="container">
+        <div class="decorations">
+            <div class="decoration">🎄</div>
+            <div class="decoration">🎅</div>
+            <div class="decoration">⛄</div>
+            <div class="decoration">🦌</div>
+            <div class="decoration">🎄</div>
+        </div>
+        <h1>✨ Feliz Natal ✨</h1>
+        <div class="message">
+            Que neste Natal nossos corações se encham de amor, 
+            esperança e gratidão por mais um ano de conquistas juntos!
+            <br><br>
+            Desejamos a todos um Natal repleto de alegria e momentos especiais!
+        </div>
+        <div class="signature">
+            Com carinho,<br>
+            Setor Operacional
+        </div>
+        <div class="gift-container">
+            <div class="gift" onclick="this.textContent = '🎉'">🎁</div>
+            <div class="gift" onclick="this.textContent = '🎉'">🎁</div>
+            <div class="gift" onclick="this.textContent = '🎉'">🎁</div>
+        </div>
+    </div>
+
+    <script>
+        function createLights() {
+            const lights = document.getElementById('lights');
+            const colors = ['#ff0000', '#00ff00', '#ffd700', '#0000ff', '#ff00ff'];
+            const numberOfLights = 50;
+
+            for (let i = 0; i < numberOfLights; i++) {
+                const light = document.createElement('div');
+                light.className = 'light';
+                light.style.left = Math.random() * 100 + '%';
+                light.style.top = Math.random() * 100 + '%';
+                light.style.backgroundColor = colors[i % colors.length];
+                light.style.animationDelay = `${Math.random() * 2}s`;
+                lights.appendChild(light);
+            }
+        }
+
+        function createSnowflakes() {
+            const snowfall = document.getElementById('snowfall');
+            const numberOfSnowflakes = 50;
+            const snowflakeTypes = ['❄', '❅', '❆', '✧', '✦'];
+
+            for (let i = 0; i < numberOfSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakeTypes[Math.floor(Math.random() * snowflakeTypes.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                snowflake.style.opacity = Math.random() * 0.8 + 0.2;
+                snowflake.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                snowflake.style.filter = `blur(${Math.random()}px)`;
+                snowfall.appendChild(snowflake);
+            }
+        }
+
+        function updateSnowflakes() {
+            const snowfall = document.getElementById('snowfall');
+            snowfall.innerHTML = '';
+            createSnowflakes();
+        }
+
+        createLights();
+        createSnowflakes();
+        setInterval(updateSnowflakes, 5000);
+
+        // Adiciona interatividade aos presentes
+        document.querySelectorAll('.gift').forEach(gift => {
+            gift.addEventListener('click', function() {
+                this.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
